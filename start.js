@@ -1,7 +1,13 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-client.settings = require('./settings.json');
+      client.db = require('./pgsql.js');
 
 require('./util/eventLoader')(client);
 
-client.login(client.settings.token);
+run();
+
+async function run() {
+    let res = await client.db(`SELECT * FROM SETTINGS`);
+    client.settings = res[0];
+    client.login(client.settings.token);
+}

@@ -4,7 +4,8 @@
   "description": "A discord.js bot",
   "main": "index.js",
   "dependencies": {
-    "discord.js": "^11.3.2"
+    "discord.js": "^11.3.2",
+    "pg": "^7.4.3"
   },
   "devDependencies": {},
   "scripts": {
