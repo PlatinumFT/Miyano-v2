@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
       client.db = require('./pgsql.js');
+      client.globalxp = {};
 
 require('./util/eventLoader')(client);
 

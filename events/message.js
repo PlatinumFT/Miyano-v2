@@ -12,6 +12,9 @@ module.exports = async message => {
     let command = messageArray[0];
     
     if(message.channel.type == 'dm') return;
+    
+    require('../util/xpHandler.js')(message);
+
     if(!command.startsWith(prefix)) return;
 
     let cmd = client.commands.get(command.slice(prefix.length)) ||
