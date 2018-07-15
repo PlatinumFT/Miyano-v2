@@ -1,4 +1,10 @@
+var PastebinAPI = require('pastebin-js');
+
 exports.run = async (client, message, args) => {
+    let pastebin = new PastebinAPI({
+        'api_dev_key' : client.settings.pastebin_key,
+    });
+
     let str = ""
     client.guilds.forEach(e => {
         str+=`${e.name} - ${e.id}\n`;
