@@ -15,7 +15,7 @@ module.exports = async (message, text) => {
     res.forEach(e => {
         if(text.toLowerCase().includes(e.phrase)) {
             message.delete();
-            return message.channel.send(`${message.author}, you are not allowed to use a blacklisted word or pharse !.`)
+            return message.channel.send(`${message.author}, you are not allowed to use a blacklisted word or phrase !.`)
         };
     });
 }
