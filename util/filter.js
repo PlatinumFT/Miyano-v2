@@ -6,8 +6,8 @@ module.exports = async (message, text) => {
     myRole = message.guild.members.get(message.author.id).highestRole;
     botRole = message.guild.members.get(client.user.id).highestRole;
 
-    if (message.guild.members.get(message.author.id).hasPermission('MANAGE_GUILD')) return;
-
+    if (await botRole.comparePositionTo(myRole) <= 0) return;
+    
     let res = await query(`select * from filter where guild_id = '${message.guild.id}'`);
     if(!res[0]) return;
 

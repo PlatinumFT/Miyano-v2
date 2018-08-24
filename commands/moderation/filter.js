@@ -38,7 +38,7 @@ exports.help = {
     usage: "filter add/remove [text]",
     permissions: 
     [
-        'MANAGE_GUILD'
+        'MANAGE_ROLES', 'MANAGE_MESSAGES'
     ]
 }
 
