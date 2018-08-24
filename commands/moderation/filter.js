@@ -24,7 +24,6 @@ exports.run = async (client, message, args) => {
             text = "There are no filtered words.";
         } else {
             for(i=0;i<res.length;i++) {
-                console.log(res[i])
                 text+=res[i].phrase + '\n';
             }
         }
@@ -39,7 +38,7 @@ exports.help = {
     usage: "filter add/remove [text]",
     permissions: 
     [
-        'MANAGE_ROLES',
+        'MANAGE_GUILD'
     ]
 }
 
