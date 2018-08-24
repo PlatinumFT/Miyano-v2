@@ -3,13 +3,13 @@ let Discord = require("discord.js");
 exports.run = async (client, message, args) => {
     let user = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
     if(!user) return message.channel.send(embedFail(`Please specify a valid user or ID!`));
-    if(user.highestRole.position >= message.member.highestRole.position) return message.channel.send(embedFail('You cannot unmute a member who has a higher or the same role as you!'));
+    if(user.highestRole.position >= message.member.highestRole.position) return message.channel.send(embedFail('You cannot mute a member who has a higher or the same role as you!'));
 
-    let role = message.guild.roles.find(r => r.name == 'Tsukihi Mute');
+    let role = message.guild.roles.find(r => r.name == 'Muted');
     if(!role) {
         try {
             role = await message.guild.createRole({
-                name: 'Tsukihi Mute',
+                name: 'Muted',
                 permissions: []
             });
     

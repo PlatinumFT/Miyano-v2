@@ -5,7 +5,7 @@ exports.run = async (client, message, args) => {
     if(!user) return message.channel.send(`Please specify a valid user or ID!`);
     if(user.highestRole.position >= message.member.highestRole.position) return message.channel.send('You cannot unmute a member who has a higher or the same role as you!')
 
-    let role = message.guild.roles.find(r => r.name == 'Tsukihi Mute');
+    let role = message.guild.roles.find(r => r.name == 'Muted');
 
     if(!role || !user.roles.has(role.id)) return message.channel.send(embedFail(`**${user}** is not muted.`));
 
