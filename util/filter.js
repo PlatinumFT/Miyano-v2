@@ -15,7 +15,7 @@ module.exports = async (message, text) => {
     res.forEach(e => {
         args.forEach(m => {
             if (filtered == true) return;
-            if(m.toLowerCase() === e.phrase.toLowerCase() || (e.phrase.toLowerCase() == 'discord.gg' || m.toLowerCase().includes(e.phrase))) {
+            if(m.toLowerCase() === e.phrase.toLowerCase() || (e.phrase.toLowerCase() == 'discord.gg' && m.toLowerCase().includes(e.phrase))) {
                 message.delete();
                 filtered = true;
                 return message.channel.send(`${message.author}, you are not allowed to use a banned word/phrase.`)
