@@ -1,18 +1,30 @@
 exports.run = async (client, message, args) => {
+
+
+
+
     if (args[0]) {
-        if(isNaN(args[0])) return message.channel.send(`Please use a valid number!`);
-        const fetched = await message.channel.fetchMessages({limit: args[0]});
-        message.channel.bulkDelete(fetched)
-            .catch(error => message.channel.send(`Error: ${error}`));
+        let user = message.mentions.users.first() || client.users.get(args[0]);
+        if(user) {
+            let value=100;
+            if(isNaN(args[1])) value = args[1];
+
+            const fetched = await message.channel.fetchMessages({limit: value});
+            await message.channel.bulkDelete(fetched.filter(m => m.author.id === user.id))
+        } else {
+            let value=100;
+            if(isNaN(args[0])) value = args[0];
+
+            const fetched = await message.channel.fetchMessages({limit: value});
+            await message.channel.bulkDelete(fetched)
+        }
     } else if (!args[0]) {
         const fetched = await message.channel.fetchMessages({limit: 100});
-        let botMessages = [];
-        fetched.forEach(e => {
-            if (e.author.id == client.user.id) botMessages.push(e);
-            else return;
-        })
-        await message.channel.bulkDelete(botMessages)
-            .catch(error => message.channel.send(`Error: ${error}`));
+        
+
+        if(fetched.size>1) {
+            await message.channel.bulkDelete(fetched.filter(m => m.author.id === client.user.id))
+        }
 
         setTimeout(function() {
             message.delete();

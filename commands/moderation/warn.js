@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 module.exports.run = async (client, message, args) => {
        if(!args[0]) return message.channel.send("You did not specify a user!");
-    target = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
+    target = message.mentions.users.first() || client.users.get(args[0]);
     if(!target) return message.channel.send("User not found!");
     let res = await client.db(`select * from warnings where guild_id = '${message.guild.id}' ORDER BY id desc`);
     let date = new Date().toUTCString()

@@ -19,7 +19,9 @@ module.exports.run = async (client, message, args) => {
             for(i=0;i<numb;i++) {
                 let target = await client.findUser(message, res[i].user_id);
                 let mod = await client.findUser(message, res[i].mod_id);
-                str += `**Case: ${res[i].id}** - User **__${target.username}#${target.discriminator}__** warned at ${moment(res[i].time).format('MMMM Do YYYY, h:mm:ss a')}\n**Reason:** ${res[i].reason}\n**Warned By:** ${mod.username}#${mod.discriminator}\n\n`;
+
+                if(target && mod)
+                    str += `**Case: ${res[i].id}** - User **__${target.username}#${target.discriminator}__** warned at ${moment(res[i].time).format('MMMM Do YYYY, h:mm:ss a')}\n**Reason:** ${res[i].reason}\n**Warned By:** ${mod.username}#${mod.discriminator}\n\n`;
             }
     
             embed.setDescription(str);
