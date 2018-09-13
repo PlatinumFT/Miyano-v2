@@ -7,13 +7,15 @@ exports.run = async (client, message, args) => {
         let user = message.mentions.users.first() || client.users.get(args[0]);
         if(user) {
             let value=100;
-            if(isNaN(args[1])) value = args[1];
+            if(!isNaN(args[1])) value = args[1];
+            else if (isNaN(args[1])) return message.channel.send(`Please specify a valid number!`);
 
             const fetched = await message.channel.fetchMessages({limit: value});
             await message.channel.bulkDelete(fetched.filter(m => m.author.id === user.id))
         } else {
             let value=100;
-            if(isNaN(args[0])) value = args[0];
+            if(!isNaN(args[0])) value = args[0];
+            else if (isNaN(args[0])) return message.channel.send(`Please specify a valid number!`);
 
             const fetched = await message.channel.fetchMessages({limit: value});
             await message.channel.bulkDelete(fetched)
@@ -28,7 +30,7 @@ exports.run = async (client, message, args) => {
 
         setTimeout(function() {
             message.delete();
-        }, 10000);
+        }, 5000);
     }
 }
 
