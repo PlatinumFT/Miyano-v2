@@ -10,20 +10,10 @@ exports.run = async (client, message, args) => {
         str+=`${e.name} - ${e.id}\n`;
     });
 
-    if (str.length > 2048) {
-        pastebin.createPaste(str, `**Guilds that I am currently in:** ${client.guilds.size}`)
-        .then(function (data) {
-            embed = new Discord.RichEmbed()
-                .setAuthor(`**Guilds that I am currently in:** ${client.guilds.size}`)
-                .setColor(role.color)
-                .setDescription(`List of guilds can be found here: ${data}`)
-                .setTimestamp();
-
-            return message.channel.send(embed);
+    pastebin.createPaste(str, `**Guilds that I am currently in:** ${client.guilds.size}`)
+        .then(async function (data) {
+            await message.channel.send(data);
         })
-    } else {
-        return message.channel.send(`**Guilds that I am currently in:**\n${str}`)
-    }
 }
 
 exports.help = {

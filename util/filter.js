@@ -1,5 +1,4 @@
 module.exports = async (message, text) => {
-    args = text.split(' ');
     let client = message.client;
     let query = client.db;
 
@@ -13,13 +12,12 @@ module.exports = async (message, text) => {
 
     let filtered = false;
     res.forEach(e => {
-        args.forEach(m => {
-            if (filtered == true) return;
-            if(m.toLowerCase() === e.phrase.toLowerCase() || (e.phrase.toLowerCase() == 'discord.gg' && m.toLowerCase().includes(e.phrase))) {
-                message.delete();
-                filtered = true;
-                return message.channel.send(`${message.author}, you are not allowed to use a banned word/phrase.`)
-            };  
-        })
+        if (filtered == true) return;
+        if(text.toLowerCase() === e.phrase.toLowerCase() || (e.phrase.toLowerCase() == 'discord.gg' && text.toLowerCase().includes(e.phrase))) {
+            message.delete();
+            filtered = true;
+            return message.channel.send(`${message.author}, you are not allowed to use a banned word/phrase.`)
+        };
     });
 }
+

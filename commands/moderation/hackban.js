@@ -6,10 +6,12 @@ exports.run = async (client, message, args) => {
     
     var success=0;
     var failure=0;
+    let toBan;
 
     for(i=0;i<args.length;i++) {
         try {
-            if(args[i].id == message.author.id) failure+=1;
+            toBan = message.guild.members.get(args[i]);
+            if((args[i].id === message.author.id) || ((toBan && toBan.highestRole.position >= message.member.highestRole.position))) failure+=1;
             else {
                 ban = await message.guild.ban(args[i]);
                 success+=1;
