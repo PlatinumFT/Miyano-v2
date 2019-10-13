@@ -15,6 +15,7 @@ module.exports = async (message, text) => {
         let filter = text.split(' ').filter((word) => {
             return word.toLowerCase() === phrase || word.toLowerCase().includes('discord.gg');
         });
+        console.log(filter)
         if(filter.length > 0) {
             message.delete();
             filtered = true;
