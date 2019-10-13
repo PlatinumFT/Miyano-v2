@@ -11,7 +11,6 @@ require('./util/eventLoader')(client);
 run();
 
 async function run() {
-    let res = await client.db(`SELECT * FROM SETTINGS`);
-    client.settings = res[0];
+    client.settings = await client.db.settings();
     client.login(client.settings.token);
 }

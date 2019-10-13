@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 module.exports.run = async (client, message, args) => {
-    if(!message.member.hasPermission("MANAGE_ROLES")) return message.channel.sendMessage("You don't have the correct permissions to clear a warning!");
+    if(!message.member.hasPermission("MANAGE_ROLES")) return message.channel.send("You don't have the correct permissions to clear a warning!");
 
     if(!args[0]) return message.channel.send("You did not specify an ID!");
     await client.db(`DELETE FROM WARNINGS WHERE guild_id = '${message.guild.id}' AND id = ${args[0]}`)

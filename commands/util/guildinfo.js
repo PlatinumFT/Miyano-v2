@@ -1,5 +1,4 @@
 const Discord = module.require("discord.js");
-const moment = require("moment");
 
 exports.run = async (client, message, args) => {
     if (!args[1]) {
@@ -21,7 +20,7 @@ exports.run = async (client, message, args) => {
         .addField("Region", `${target.region}`, true)
         .addField("Emotes", emojis,true)          
         .addField("Members", `${target.memberCount}`,true)
-        .addField("Created", moment(target.createdTimestamp).format('MMMM Do YYYY, h:mm:ss a'), true)          
+        .addField("Created", target.createdTimestamp, true)          
         .setTimestamp();
 
         message.channel.send(embed);

@@ -1,11 +1,13 @@
-var colors = require('colors');
-var os = require('os');
-module.exports = client => {
-	let settings=client.settings
-    console.log(`${client.user.username} has started`.bold.magenta)
-    console.log(` Users: `.bold.red + `${client.users.size}`)
-    console.log(` Channels: `.bold.red + `${client.channels.size}`)
-    console.log(` Guilds: `.bold.red + `${client.guilds.size}`)
+module.exports = async client => {
+    console.log(`${client.user.username} has started`)
+    console.log(` Users: ` + `${client.users.size}`)
+    console.log(` Channels: ` + `${client.channels.size}`)
+    console.log(` Guilds: ` + `${client.guilds.size}`)
 
-    require('../util/commandsLoader.js')(client);    
+    if(client.user.username != 'Mibano') {
+        let owner = await client.users.get(client.settings.owner_id);
+        owner.send('I have started!');    
+    }
+
+    require('../util/commandsLoader.js')(client);
 }

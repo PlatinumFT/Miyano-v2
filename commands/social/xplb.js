@@ -1,5 +1,4 @@
 const Discord = module.require("discord.js");
-const moment = require("moment");
 
 module.exports.run = async (client, message, args) => {
     let query = client.db
@@ -14,24 +13,24 @@ module.exports.run = async (client, message, args) => {
         results = args[0];
     }
 
-    maxResults = results*10;
-    minResults = maxResults-10;
+    maxResults = results * 10;
+    minResults = maxResults - 10;
 
-    let text = "";
-    let footerText = "";
+    let text = "",
+        footerText = "";
 
-    for(i=minResults;i<maxResults;i++){
-        if(res[i]) {
-        let isHere;
-        let user = client.users.get(res[i].user_id);
-        if(!user) isHere= "<User has left guild>"
-        else isHere = `${user.username}#${user.discriminator}`;
-        text+=`**[${i+1}]**     __**${isHere}**__\n                XP: ${res[i].xp}\n`;
-        } 
+    for (i = minResults; i < maxResults; i++) {
+        if (res[i]) {
+            let isHere;
+            let user = client.users.get(res[i].user_id);
+            if (!user) isHere = "<User has left guild>"
+            else isHere = `${user.username}#${user.discriminator}`;
+            text += `**[${i + 1}]** ${isHere}\nXP: ${res[i].xp}\n`;
+        }
     }
-    for(i=0;i<(res.length);i++) {
-        if(res[i].user_id === message.author.id) {
-            footerText = `Your Rank:   ${i+1}     |    Your XP:   ${res[i].xp}`
+    for (i = 0; i < (res.length); i++) {
+        if (res[i].user_id === message.author.id) {
+            footerText = `Your Rank: ${i + 1} | Your XP: ${res[i].xp}`
         }
     }
 
@@ -48,5 +47,5 @@ module.exports.help = {
     name: "xplb",
     description: "Shows the xp leaderboard for the guild.",
     usage: "xplb",
-    type: "utility"    
+    type: "utility"
 }

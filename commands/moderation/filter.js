@@ -1,11 +1,11 @@
 const Discord = require("discord.js");
 
 exports.run = async (client, message, args) => {
-    if(!message.member.hasPermission("MANAGE_ROLES")) return message.channel.sendMessage("You don't have the correct permissions to alter filters!");
+    if(!message.member.hasPermission("MANAGE_ROLES")) return message.channel.send("You don't have the correct permissions to alter filters!");
 
     if(args[0] == "add") {
-        let text = args.slice(1).join(' ');
-        let textSQL = text.replaceAll("'", "''");
+        let text = args.slice(1).join(' '),
+            textSQL = text.replaceAll("'", "''");
         await client.db(`insert into filter values('${message.guild.id}','${textSQL}')`);
         await message.channel.send(`Added ${text} to list of filtered words/phrases.`);
     }
