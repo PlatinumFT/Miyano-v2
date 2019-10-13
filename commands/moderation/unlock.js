@@ -10,7 +10,7 @@ exports.run = async (client, message, args) => {
     await channel.overwritePermissions(message.guild.id, {
         SEND_MESSAGES: null
     }).then(async function () {
-        await message.channel.send(`✅ Unlocked <#${channel.id}>`);
+        await message.channel.send(`✅ Unlocked ${channel}`);
     }).catch(e => {
         console.log(`Cannot unlock channel: ${message.channel.name}`);
     });
