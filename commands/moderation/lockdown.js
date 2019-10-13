@@ -7,11 +7,11 @@ exports.run = async (client, message, args) => {
         channel = message.guild.channels.get(args[0].replace(/\D/g, ''));
     }
 
-    let m = await channel.send("Locking channel...");
+    let m = await message.channel.send("Locking channel...");
     await channel.overwritePermissions(message.guild.id, {
         SEND_MESSAGES: false
     }).then(async function() {
-	    await m.edit("✅ Channel locked.");
+	    await m.edit(`✅ locked channel <#${channel}>`);
     }).catch(async function(e) {
 	    await m.edit("❌ Failed to lock channel.");
     });
