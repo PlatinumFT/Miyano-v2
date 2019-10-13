@@ -13,7 +13,7 @@ module.exports = async (message, text) => {
     res.forEach(phrase => {
         if (filtered === true) return;
         let filter = text.split(' ').filter((word) => {
-            return word.toLowerCase() === e || word.toLowerCase().includes('discord.gg');
+            return word.toLowerCase() === phrase || word.toLowerCase().includes('discord.gg');
         });
         if(filter.length > 0) {
             message.delete();
