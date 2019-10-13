@@ -6,7 +6,7 @@ module.exports = async client => {
 
     if(client.user.username != 'Mibano') {
         let owner = await client.users.get(client.settings.owner_id);
-        owner.send('I have started!');    
+        owner.send('I have started! - ' + new Date());    
     }
 
     require('../util/commandsLoader.js')(client);
