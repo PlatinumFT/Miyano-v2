@@ -5,7 +5,7 @@ exports.run = async (client, message, args) => {
     let text = args.slice(1).join(' ');
     if (toRename.highestRole.position >= message.member.highestRole.position) return message.channel.send('❌ **You cannot change the nickname of a member who has a higher or the same role as you!**')
 
-    await toRename.setNickname(text === '' ? toRename.user.username : text, `${message.author.username} rename.`);
+    await toRename.setNickname((text === null || text === '') ? toRename.user.username : text, `${message.author.username} rename.`);
     await message.channel.send(`✅ **Updated nickname for user ${toRename.user.username}#${toRename.user.discriminator}!**`);
 }
 
