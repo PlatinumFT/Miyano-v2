@@ -2,7 +2,7 @@ const Discord = module.require("discord.js");
 
 exports.run = async (client, message, args) => {
     let text = args.slice(0).join(' '),
-        target = await client.findUser(message, text),
+        target = await client.findUser(message, text);
 
     if (!target) return message.channel.send("Not found");
 
