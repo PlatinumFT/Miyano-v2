@@ -3,7 +3,7 @@ module.exports = async (message, text) => {
         query = client.db,
         member = message.guild.members.get(message.author.id),
 
-    if (member.hasPermission('MANAGE_MESSAGES')) return;
+    if (!member.hasPermission('MANAGE_MESSAGES')) return;
 
     let res = await query(`select * from filter where guild_id = '${message.guild.id}'`);
     if(!res[0]) return;
