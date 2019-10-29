@@ -1,7 +1,7 @@
 module.exports = async (message, text) => {
     let client = message.client,
         query = client.db,
-        member = message.guild.members.get(message.author.id),
+        member = message.guild.members.get(message.author.id);
 
     if (!member.hasPermission('MANAGE_MESSAGES')) return;
 
