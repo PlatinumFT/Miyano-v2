@@ -12,7 +12,7 @@ exports.run = async (client, message, args) => {
 
     if(args[0] == "clear") {
         if (res[0]) {
-            if(res.role) await query.qrun(`DELETE FROM autoassign WHERE guild_id = '${message.guild.id}'`);
+            if(res.role) await query(`DELETE FROM autoassign WHERE guild_id = '${message.guild.id}'`);
         }
         message.channel.send('Removed assignable role!');
     } else if (args[0] == "set"){
